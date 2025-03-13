@@ -3,10 +3,15 @@ import type { Product } from "./types.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
-  const htmlItems = cartItems.map((item: Product) => cartItemTemplate(item));
+
+  // Ensure cartItems is always an array
+  const cartArray = Array.isArray(cartItems) ? cartItems : [cartItems];
+  
+  const htmlItems = cartArray.map((item: Product) => cartItemTemplate(item));
   const listEl = document.querySelector(".product-list");
   if (listEl) listEl.innerHTML = htmlItems.join("");
 }
+
 
 function cartItemTemplate(item: Product) {
   const newItem = `<li class="cart-card divider">
