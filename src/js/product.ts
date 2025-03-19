@@ -1,20 +1,12 @@
-import type { Product } from "./types.mts";
-import { setLocalStorage } from "./utils.mts";
+import { getParam } from "./utils.mts";
 import { findProductById } from "./productData.mts";
+import productDetails from "./productDetails.mjs";
 
-function addProductToCart(product: Product) {
-  setLocalStorage("so-cart", product);
-}
-// add to cart button event handler
-async function addToCartHandler(e: Event) {
-  const target = e.target as HTMLButtonElement;
-  if (target.dataset.id) {
-    const product = await findProductById(target.dataset.id);
-    addProductToCart(product);
-  }
+let productId = getParam("product");
+if (productId) {
+  console.log(await findProductById(productId));
+  productDetails(productId, ".product-detail");
+} else {
+  console.error("Product ID is null or undefined");
 }
 
-// add listener to Add to Cart button
-document
-  .getElementById("addToCart")
-  ?.addEventListener("click", addToCartHandler);
