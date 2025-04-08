@@ -18,8 +18,8 @@ export default function productDetails(productId: string, selector: string) {
 
   // add a listener to Add to Cart button
   document
-  .getElementById("addToCart")
-  ?.addEventListener("click", addToCartHandler);
+    .getElementById("addToCart")
+    ?.addEventListener("click", addToCartHandler);
 }
 
 export function addProductToCart(product: Product) {
@@ -29,12 +29,12 @@ export function addProductToCart(product: Product) {
 function productDetailsTemplate(product: Product) {
   // alt = empty string because it's a decorative image. The important information is already in the context.
   return `
-        <h3 id="productName">${product.Name}</h3>
-        <h2 class="divider" id="productNameWithoutBrand">${product.NameWithoutBrand}</h2>
-        <img id="productImage" class="divider" src="${product.Image}" alt="" />
-        <p class="product-card__price" id="productFinalPrice">${product.ListPrice}</p>
-        <p class="product__color" id="productColorName">${product.Colors[0].ColorName}</p>
-        <p class="product__description" id="productDescriptionHtmlSimple">${product.DescriptionHtmlSimple}</p>
+        <h3 id="productName">${product.name}</h3>
+        <h2 class="divider" id="productNameWithoutBrand">${product.nameWithoutBrand}</h2>
+        <img id="productImage" class="divider" src="${product.images.primaryExtraLarge}" alt="" />
+        <p class="product-card__price" id="productFinalPrice">${product.listPrice}</p>
+        <p class="product__color" id="productColorName">${product.colors[0].colorName}</p>
+        <p class="product__description" id="productDescriptionHtmlSimple">${product.descriptionHtmlSimple}</p>
         <div class="product-detail__add">
           <button id="addToCart" data-id="">Add to Cart</button>
         </div>`;
